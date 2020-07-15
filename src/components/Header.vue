@@ -27,7 +27,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href="#">End Day</a>
+              <a href="#" @click="endDay">End Day</a>
             </li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Save &amp; Load <span class="caret"></span></a>
@@ -36,7 +36,7 @@
                     <li><a href="#">Load Data</a></li>
                 </ul>
             </li>
-            <li><a href="#">Funds: ${{ funds }}</a></li>
+            <li><a href="#">Funds: {{ funds | currency }}</a></li>
           </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -51,6 +51,11 @@ export default {
   data() {
     return {
     };
+  },
+  methods: {
+    endDay() {
+      this.$store.dispatch('randomizeStocks');
+    }
   },
   computed: {
     funds() {

@@ -3,8 +3,18 @@ import VueRouter from 'vue-router';
 import App from './App.vue';
 import { routes } from './routes';
 import store from "./store";
+import VueCurrencyFilter from 'vue-currency-filter';
 
 Vue.use(VueRouter);
+Vue.use(VueCurrencyFilter,
+  {
+    symbol : '$',
+    thousandsSeparator: '.',
+    fractionCount: 2,
+    fractionSeparator: ',',
+    symbolPosition: 'front',
+    symbolSpacing: true
+  });
 
 const router = new VueRouter({
   mode: 'history',
