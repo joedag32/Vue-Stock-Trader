@@ -1,0 +1,29 @@
+<template>
+  <div>
+    <p>Portfolio</p>
+    <div class="row">
+      <app-stock v-for="stock in stocks" :stock="stock"></app-stock>
+    </div>
+  </div>
+</template>
+
+<script>
+import Stock from "./Stock.vue";
+
+export default {
+  data() {
+    return {};
+  },
+  components: {
+    appStock: Stock
+  },
+  computed: {
+    stocks() {
+      return this.$store.getters.stockPortfolio;
+    }
+  }
+};
+</script>
+
+<style scoped>
+</style>
