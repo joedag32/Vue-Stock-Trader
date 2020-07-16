@@ -3,7 +3,9 @@
         <app-header></app-header>
         <div class="row">
             <div class="col-xs-12">
-                <router-view></router-view>
+                <transition name="fade" mode="out-in">
+                    <router-view></router-view>
+                </transition>
             </div>
         </div>
     </div>
@@ -25,5 +27,12 @@
 </script>
 
 <style>
-
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
 </style>

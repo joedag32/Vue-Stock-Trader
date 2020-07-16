@@ -9,11 +9,11 @@ Vue.use(VueRouter);
 Vue.use(VueCurrencyFilter,
   {
     symbol : '$',
-    thousandsSeparator: '.',
+    thousandsSeparator: ',',
     fractionCount: 2,
-    fractionSeparator: ',',
+    fractionSeparator: '.',
     symbolPosition: 'front',
-    symbolSpacing: true
+    symbolSpacing: false
   });
 
 const router = new VueRouter({
