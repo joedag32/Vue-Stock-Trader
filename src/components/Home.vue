@@ -3,7 +3,6 @@
     <div class="panel panel-default">
       <div class="panel-body">
           <h2>Trade or View Your Portfolio</h2>
-          <p>You may save or load your data</p>
           <p>Click on 'End Day' to begin a new day!</p>
           <hr>
           <h3>Your Funds: {{ funds | currency }}</h3>

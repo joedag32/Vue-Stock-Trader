@@ -1,24 +1,28 @@
 <template>
   <div class="col-sm-6 col-md-4">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title">
+    <div class="card text-white bg-success">
+      <div class="card-body">
+        <h5 class="card-title">
           {{ stock.name }}
           <small>(Price: {{ stock.price | currency }} | Quantity: {{ stock.quantity }})</small>
-        </h3>
-      </div>
-      <div class="panel-body">
-        <div class="pull-left">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Quantity"
-            v-model="quantity"
-            :class="{danger: insufficientQuantity}"
-          />
-        </div>
-        <div class="pull-right">
-          <button class="btn btn-success" @click="sellStock" :disabled="insufficientQuantity || quantity <= 0 || !Number.isInteger(+quantity)">Sell</button>
+        </h5>
+        <div class="form-row">
+          <div class="col-auto my-1">
+            <input
+              type="number"
+              class="form-control"
+              placeholder="Quantity"
+              v-model="quantity"
+              :class="{danger: insufficientFunds}"
+            />
+          </div>
+          <div class="col-auto my-1">
+            <button
+              class="btn btn-primary"
+              @click="sellStock"
+              :disabled="insufficientQuantity || quantity <= 0 || !Number.isInteger(+quantity)"
+            >Sell</button>
+          </div>
         </div>
       </div>
     </div>
@@ -27,33 +31,36 @@
 
 <script>
 export default {
-  props: ['stock'],
+  props: ["stock"],
   data() {
     return {
       quantity: 0
     };
   },
   methods: {
-      sellStock() {
-          const order = {
-              stockId: this.stock.id,
-              stockPrice: this.stock.price,
-              quantity: this.quantity
-          };
-          this.$store.dispatch('sellStock', order);
-          this.quantity = 0;
-      }
+    sellStock() {
+      const order = {
+        stockId: this.stock.id,
+        stockPrice: this.stock.price,
+        quantity: this.quantity
+      };
+      this.$store.dispatch("sellStock", order);
+      this.quantity = 0;
+    }
   },
   computed: {
     insufficientQuantity() {
-        return this.quantity > this.stock.quantity;
+      return this.quantity > this.stock.quantity;
     }
   }
 };
 </script>
 
 <style scoped>
+.card {
+  margin-bottom: 20px;
+}
 .danger {
-    border: 1px solid red;
+  border: 1px solid red;
 }
 </style>

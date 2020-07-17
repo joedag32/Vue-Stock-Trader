@@ -2,7 +2,7 @@
     <div class="container">
         <app-header></app-header>
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col">
                 <transition name="fade" mode="out-in">
                     <router-view></router-view>
                 </transition>

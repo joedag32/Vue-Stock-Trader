@@ -1,24 +1,28 @@
 <template>
   <div class="col-sm-6 col-md-4">
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h5 class="card-title">
           {{ stock.name }}
           <small>(Price: {{ stock.price | currency }})</small>
-        </h3>
-      </div>
-      <div class="panel-body">
-        <div class="pull-left">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Quantity"
-            v-model="quantity"
-            :class="{danger: insufficientFunds}"
-          />
-        </div>
-        <div class="pull-right">
-          <button class="btn btn-success" @click="buyStock" :disabled="insufficientFunds || quantity <= 0 || !Number.isInteger(+quantity)">Buy</button>
+        </h5>
+        <div class="form-row">
+          <div class="col-auto my-1">
+            <input
+              type="number"
+              class="form-control"
+              placeholder="Quantity"
+              v-model="quantity"
+              :class="{danger: insufficientFunds}"
+            />
+          </div>
+          <div class="col-auto my-1">
+            <button
+              class="btn btn-success"
+              @click="buyStock"
+              :disabled="insufficientFunds || quantity <= 0 || !Number.isInteger(+quantity)"
+            >Buy</button>
+          </div>
         </div>
       </div>
     </div>
@@ -27,7 +31,7 @@
 
 <script>
 export default {
-  props: ['stock'],
+  props: ["stock"],
   data() {
     return {
       quantity: 0
@@ -40,7 +44,7 @@ export default {
         stockPrice: this.stock.price,
         quantity: this.quantity
       };
-      this.$store.dispatch('buyStock', order);
+      this.$store.dispatch("buyStock", order);
       this.quantity = 0;
     }
   },
@@ -56,6 +60,9 @@ export default {
 </script>
 
 <style scoped>
+.card {
+  margin-bottom: 20px;
+}
 .danger {
   border: 1px solid red;
 }
